@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Coimbatore City Atlas Dashboard</title>
+    <title>Dashboard - Priority for Dry Season Atlas </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/birdcount.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -18,16 +18,42 @@
     <script type="text/javascript" src="js/app.js"></script>
     <script>
         var MAP_DATA = {
-            februarycityatlas: {
-                mapSpreadSheetId: '1QdYbm063-cA49snGsDyW_scH165zjiK6_TDER68QMAk',
-                name: 'February City Atlas',
-                mapContainerId: 'februarycityatlas'
+            lowestpriority: {
+                //mapSpreadSheetId: '1IKx7zUs8ZYKHkx6BwN2Lt8zfpSAlpkGC56mjFuk_DUY',
+                mapSpreadSheetId: '1udCLenQ4jf03wrRL9ynX3fMXTH2kGyiKjw6BLiYD2P0',
+                name: 'Lowest Priority',
+                mapContainerId: 'lowestpriority'
             },
-            julycityatlas: {
-                mapSpreadSheetId: '1QdYbm063-cA49snGsDyW_scH165zjiK6_TDER68QMAk',
-                name: 'July City Atlas',
-                mapContainerId: 'julycityatlas'
-            }
+            lowpriority: {
+                //mapSpreadSheetId: '1mqJ72hWsrSMAkkwG2rhJVo41OWfD1-mJZ3ytntt23Rs',
+                mapSpreadSheetId: '1kRTOTScimVi24Hhth1RfUXl9y5f64YBc6a4O8yM6ocA',
+                name: 'Low Priority',
+                mapContainerId: 'lowpriority'
+            },
+            midpriority: {
+                //mapSpreadSheetId: '1F9iMxso21ZH2ScSDeHqg8-884AXCTYCeWdc8sVeHUc4',
+                mapSpreadSheetId: '1rwVN3ALN2LN7lO9zNfa4ib1-GEOBdPr7bgeHhCZ12ck',
+                name: 'Medium Priority(Feb-Mar)',
+                mapContainerId: 'midpriority'
+            },
+            highpriority: {
+                //mapSpreadSheetId: '1fn7LLv7qZItaluKYQbqYE-VseCRTa7o2XrQCll21X4A',
+                mapSpreadSheetId: '1_Z_TypvhOvIht5Lix-wIhJANMBmmqvq4HCRX3NJzE7U',
+                name: 'High Priority (Jan-Feb)',
+                mapContainerId: 'highpriority'
+            },
+            highestpriority: {
+                //mapSpreadSheetId: '1fn7LLv7qZItaluKYQbqYE-VseCRTa7o2XrQCll21X4A',
+                mapSpreadSheetId: '1q0zho-Zrk9rrw0EBY-hmdad4WJYhWjpYcNTFRnDFlDo',
+                name: 'Highest Priority (CoF)',
+                mapContainerId: 'highestpriority'
+            },
+            atlascells: {
+                //mapSpreadSheetId: '1fn7LLv7qZItaluKYQbqYE-VseCRTa7o2XrQCll21X4A',
+                mapSpreadSheetId: '1fatKl3dmr9zf9ISXutTIJurhBcgBe0mxxZKaWHgzVXY',
+                name: 'Atlas Cells',
+                mapContainerId: 'atlascells'
+            }         
         };
     </script>
     <script>
@@ -49,15 +75,27 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/">Coimbatore City Atlas V1</a>
+            <a class="navbar-brand" href="#/">Kerala Bird Atlas</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav nav-pills">
                 <li role="presentation">
-                    <a href="#/coimbatore/februarycityatlas" role="tab" data-target="#februarycityatlas" data-toggle="tab">February</a>
+                    <a href="#/kerala/highestpriority" role="tab" data-target="#highestpriority" data-toggle="tab">Highest Priority (CoF)</a>
                 </li>
                 <li role="presentation">
-                    <a href="#/coimbatore/julycityatlas" role="tab" data-target="#julycityatlas" data-toggle="tab">July</a>
+                    <a href="#/kerala/highpriority" role="tab" data-target="#highpriority" data-toggle="tab">High Priority (Jan-Feb)</a>
+                </li>
+                <li role="presentation">
+                    <a href="#/kerala/midpriority" role="tab" data-target="#midpriority" data-toggle="tab">Medium Priority (Feb-Mar)</a>
+                </li>
+                <li role="presentation">
+                    <a href="#/kerala/lowpriority" role="tab" data-target="#lowpriority" data-toggle="tab">Low Priority</a>
+                </li>
+                <li role="presentation">
+                    <a href="#/kerala/lowestpriority" role="tab" data-target="#lowestpriority" data-toggle="tab">Lowest Priority</a>
+                </li>
+                <li role="presentation">
+                    <a href="#/kerala/atlascells" role="tab" data-target="#atlascells" data-toggle="tab">Atlas Cells</a>
                 </li>
             </ul>
         </div>
@@ -65,8 +103,12 @@
 </nav>
 <div class="map-parent container-fluid">
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane map-container" id="februarycityatlas"></div>
-        <div role="tabpanel" class="tab-pane map-container" id="julycityatlas"></div>
+        <div role="tabpanel" class="tab-pane map-container" id="highestpriority"></div>
+        <div role="tabpanel" class="tab-pane map-container" id="highpriority"></div>
+        <div role="tabpanel" class="tab-pane map-container" id="midpriority"></div>
+        <div role="tabpanel" class="tab-pane map-container" id="lowpriority"></div>
+        <div role="tabpanel" class="tab-pane map-container" id="lowestpriority"></div>
+        <div role="tabpanel" class="tab-pane map-container" id="atlascells"></div>
     </div>
 </div>
 <div class="modal fade page-alert-box" tabindex="-1" role="dialog">
